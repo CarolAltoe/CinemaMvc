@@ -112,9 +112,9 @@
     <Content Include="Views\Ator\Delete.cshtml" />
     <Content Include="Views\Idioma\Index.cshtml" />
     <Content Include="Views\Idioma\Create.cshtml" />
+    <Content Include="Views\Idioma\Edit.cshtml" />
     <Content Include="Views\Idioma\Details.cshtml" />
     <Content Include="Views\Idioma\Delete.cshtml" />
-    <Content Include="Views\Idioma\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

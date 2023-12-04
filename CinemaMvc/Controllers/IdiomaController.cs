@@ -1,4 +1,5 @@
-﻿using CinemaMvc.Models;
+﻿
+using CinemaMvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,18 @@ namespace CinemaMvc.Controllers
     {
         private static IList<Idioma> idiomas = new List<Idioma>()
         {
-            new Idioma(){
-                Id =1,
-                Descricao="chuchuuuu"
-            },
-            new Idioma(){
-                Id = 2,
-                Descricao="chucafk,lkgwshuuuu"
-            },
+          new Idioma() {
+              Id =1,
+              Descricao="ooooooooooo",
+          }
         };
+
 
 
         // GET: Idioma
         public ActionResult Index()
         {
-            return View();
+            return View(idiomas);
         }
 
 
