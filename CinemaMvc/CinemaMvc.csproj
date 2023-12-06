@@ -132,7 +132,6 @@
     <Content Include="Views\Atuacao\Create.cshtml" />
     <Content Include="Views\Idioma\Index.cshtml" />
     <Content Include="Views\Idioma\Create.cshtml" />
-    <Content Include="Views\Filme\Edit.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Filme\Details.cshtml" />
@@ -140,6 +139,7 @@
     <Content Include="Views\Atuacao\Edit.cshtml" />
     <Content Include="Views\Atuacao\Delete.cshtml" />
     <Content Include="Views\Atuacao\Details.cshtml" />
+    <Content Include="Views\Filme\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
