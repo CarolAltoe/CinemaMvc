@@ -7,13 +7,14 @@ namespace CinemaMvc.Models
 {
     public class Filme
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public int AnoLancamento { get; set; }
         public string Categoria { get; set; }
         public string ClassificacaoIndicativa { get; set; }
-        public int IdiomaId { get; set; }
-        
+        public long IdiomaId { get; set; }
+        public virtual ICollection<Atuacao> Atuacoes { get; set; }
+
     }
 }

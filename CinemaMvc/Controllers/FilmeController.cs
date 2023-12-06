@@ -4,30 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CinemaMvc.Contexts;
+using System.Net;
 
 namespace CinemaMvc.Controllers
 {
     public class FilmeController : Controller
     {
-
-        private static IList<Filme> filmes = new List<Filme>()
-        {
-            new Filme(){
-                Id =1,
-                Titulo="meu intinho ",
-                Descricao="amarelinho",
-                AnoLancamento = 2001,
-                Categoria = "animação",
-                ClassificacaoIndicativa = "Livre",
-                IdiomaId = 1
-            }
-        };
-
+        private EFContext context = new EFContext();
 
         // GET: Filme
         public ActionResult Index()
         {
-            return View(filmes);
+            return View(context.Filmes.OrderBy(c => c.Titulo));
         }
 
         public ActionResult Create()
@@ -39,40 +28,73 @@ namespace CinemaMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Filme filme)
         {
-            filmes.Add(filme);
-            filme.Id = filmes.Select(m => m.Id).Max() + 1;
+            context.Filmes.Add(filme);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(long id)
+        public ActionResult Edit(long? id)
         {
-            return View(filmes.Where(m => m.Id == id).First());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Filme filme = context.Filmes.Find(id);
+            if (filme == null)
+            {
+                return HttpNotFound();
+            }
+            return View(filme);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Filme filme)
         {
-            filmes.Remove(filmes.Where(m => m.Id == filme.Id).First());
-            filmes.Add(filme);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                context.Entry(filme).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(filme);
         }
 
         public ActionResult Details(long id)
         {
-            return View(filmes.Where(m => m.Id == id).First());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Filme filme = context.Filmes.Find(id);
+            if (filme == null)
+            {
+                return HttpNotFound();
+            }
+            return View(filme);
         }
 
-        public ActionResult Delete(long id)
+        public ActionResult Delete(long? id)
         {
-            return View(filmes.Where(m => m.Id == id).First());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Filme filme = context.Filmes.Find(id);
+            if (filme == null)
+            {
+                return HttpNotFound();
+            }
+            return View(filme);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Filme filme)
+        public ActionResult Delete(long id)
         {
-            filmes.Remove(filmes.Where(m => m.Id == filme.Id).First());
+            Filme filme = context.Filmes.Find(id);
+            context.Filmes.Remove(filme);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 

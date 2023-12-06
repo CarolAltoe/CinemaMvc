@@ -1,26 +1,22 @@
-﻿
-using CinemaMvc.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CinemaMvc.Contexts;
+using CinemaMvc.Models;
 
 namespace CinemaMvc.Controllers
 {
-    public class IdiomaController : Controller
+    public class AtuacaoController : Controller
     {
-
         private EFContext context = new EFContext();
-        // GET: Idioma
-        [HttpGet]
+        // GET: Atuacaos
         public ActionResult Index()
         {
-            return View(context.Idiomas.OrderBy(c => c.Descricao));
+            return View(context.Atuacoes.OrderBy(c => c.Id));
         }
-
 
         public ActionResult Create()
         {
@@ -29,80 +25,78 @@ namespace CinemaMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Idioma idioma)
+        public ActionResult Create(Atuacao atuacao)
         {
-            context.Idiomas.Add(idioma);
+            context.Atuacoes.Add(atuacao);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(long id)
+
+        public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = context.Idiomas.Find(id);
-            if (idioma == null)
+            Atuacao atuacao = context.Atuacoes.Find(id);
+            if (atuacao == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
+            return View(atuacao);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Idioma idioma)
+        public ActionResult Edit(Atuacao atuacao)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(idioma).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(atuacao).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(idioma);
+            return View(atuacao);
         }
 
-        public ActionResult Details(long id)
+        public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Idioma idioma = context.Idiomas.Find(id);
-            if (idioma == null)
+            Atuacao atuacao = context.Atuacoes.Find(id);
+            if (atuacao == null)
             {
                 return HttpNotFound();
             }
-            return View(idioma);
-        }
-
-        public ActionResult Delete(long id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Idioma idioma = context.Idiomas.Find(id);
-            if (idioma == null)
-            {
-                return HttpNotFound();
-            }
-            return View(idioma);
+            return View(atuacao);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(long id)
         {
-            Idioma idioma = context.Idiomas.Find(id);
-            context.Idiomas.Remove(idioma);
+            Atuacao atuacao = context.Atuacoes.Find(id);
+            context.Atuacoes.Remove(atuacao);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-
-
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Atuacao atuacao = context.Atuacoes.Find(id);
+            if (atuacao == null)
+            {
+                return HttpNotFound();
+            }
+            return View(atuacao);
+        }
 
     }
 }
