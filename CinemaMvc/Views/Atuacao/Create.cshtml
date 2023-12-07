@@ -19,16 +19,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Atores, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Atores, ViewBag.Atores as SelectList, "Selecione um Ator", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Atores, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.AtorId, ViewBag.Atores as SelectList, "Selecione um Ator", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AtorId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Filmes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Filmes, ViewBag.Filmes as SelectList, "Selecione um Filme", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Filmes, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.FilmeId, ViewBag.Filmes as SelectList, "Selecione um Filme", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FilmeId, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -13,6 +13,8 @@ namespace CinemaMvc.Models
         public long FilmeId { get; set; }
         public virtual ICollection<Ator> Atores { get; set; }
         public virtual ICollection<Filme> Filmes { get; set; }
+        public Ator ator { get; set; }
+        public Filme filme { get; set; }
 
     }
 }

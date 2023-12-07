@@ -15,7 +15,17 @@ namespace CinemaMvc.Controllers
         // GET: Atuacaos
         public ActionResult Index()
         {
-            return View(context.Atuacoes.OrderBy(c => c.Id));
+            var atuacoes = context.Atuacoes
+            .OrderBy(c => c.Id)
+            .ToList();
+
+            foreach (var atuacao in atuacoes)
+            {
+                atuacao.ator = context.Atores.Find(atuacao.AtorId);
+                atuacao.filme = context.Filmes.Find(atuacao.FilmeId);
+            }
+
+            return View(atuacoes);
         }
 
         public ActionResult Create()
@@ -26,9 +36,6 @@ namespace CinemaMvc.Controllers
             ViewBag.Atores = new SelectList(context.Atores, "Id", "Nome");
             ViewBag.Filmes = new SelectList(context.Filmes, "Id", "Titulo");
 
-            context.Atuacoes.Add(atuacaoViewModel);
-            context.SaveChanges();
-
             return View(atuacaoViewModel);
 
         }
@@ -36,6 +43,15 @@ namespace CinemaMvc.Controllers
         private SelectList GetDropdownList(string valueField, IEnumerable<object> source)
         {
             return new SelectList(source, valueField);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Atuacao atuacao)
+        {
+            context.Atuacoes.Add(atuacao);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

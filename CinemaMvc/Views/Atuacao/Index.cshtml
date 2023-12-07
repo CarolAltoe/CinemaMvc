@@ -24,10 +24,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AtorId)
+                @Html.DisplayFor(modelItem => item.ator.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FilmeId)
+                @Html.DisplayFor(modelItem => item.filme.Titulo)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
