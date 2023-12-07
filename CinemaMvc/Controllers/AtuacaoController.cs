@@ -20,16 +20,22 @@ namespace CinemaMvc.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var atuacaoViewModel = new Atuacao();
+
+
+            ViewBag.Atores = new SelectList(context.Atores, "Id", "Nome");
+            ViewBag.Filmes = new SelectList(context.Filmes, "Id", "Titulo");
+
+            context.Atuacoes.Add(atuacaoViewModel);
+            context.SaveChanges();
+
+            return View(atuacaoViewModel);
+
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Atuacao atuacao)
+        private SelectList GetDropdownList(string valueField, IEnumerable<object> source)
         {
-            context.Atuacoes.Add(atuacao);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            return new SelectList(source, valueField);
         }
 
 
