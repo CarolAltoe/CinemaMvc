@@ -12,16 +12,33 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
-
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="~/Atuacao/Index">CineGirls</a>
-            <a class="nav-link" href="~/Atuacao/Index">Home </a>
-            <a class="nav-link" href="~/Ator/Index">Ator</a>
-            <a class="nav-link" href="~/Filme/Index">Filme</a>
-            <a class="nav-link" href="~/Idioma/Index">Idioma</a>
-        </nav>
-    </div>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" runat="server" href="~/">Cine Girls</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar a navegação" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="~/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="~/Ator/Index">Ator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="~/Filme/Index">Filme</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="~/Idioma/Index">Idioma</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br /> 
+    <br />
 
     <div class="container body-content">
         @RenderBody()
