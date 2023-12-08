@@ -14,6 +14,8 @@ namespace CinemaMvc.Models
         public string Categoria { get; set; }
         public string ClassificacaoIndicativa { get; set; }
         public long IdiomaId { get; set; }
+        public Idioma idioma { get; set; }
+        public virtual ICollection<Idioma> Idiomas { get; set; }
         public virtual ICollection<Atuacao> Atuacoes { get; set; }
 
     }

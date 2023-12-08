@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.ClassificacaoIndicativa)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdiomaId)
+            @Html.DisplayNameFor(model => model.idioma)
         </th>
         <th></th>
     </tr>
@@ -50,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.ClassificacaoIndicativa)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdiomaId)
+            @Html.DisplayFor(modelItem => item.idioma.Descricao)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })

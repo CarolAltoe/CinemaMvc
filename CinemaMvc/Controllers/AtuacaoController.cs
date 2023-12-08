@@ -62,6 +62,8 @@ namespace CinemaMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Atuacao atuacao = context.Atuacoes.Find(id);
+            ViewBag.Atores = new SelectList(context.Atores, "Id", "Nome");
+            ViewBag.Filmes = new SelectList(context.Filmes, "Id", "Titulo");
             if (atuacao == null)
             {
                 return HttpNotFound();
@@ -89,6 +91,8 @@ namespace CinemaMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Atuacao atuacao = context.Atuacoes.Find(id);
+            atuacao.ator = context.Atores.Find(atuacao.AtorId);
+            atuacao.filme = context.Filmes.Find(atuacao.FilmeId);
             if (atuacao == null)
             {
                 return HttpNotFound();
@@ -113,6 +117,8 @@ namespace CinemaMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Atuacao atuacao = context.Atuacoes.Find(id);
+            atuacao.ator = context.Atores.Find(atuacao.AtorId);
+            atuacao.filme = context.Filmes.Find(atuacao.FilmeId);
             if (atuacao == null)
             {
                 return HttpNotFound();

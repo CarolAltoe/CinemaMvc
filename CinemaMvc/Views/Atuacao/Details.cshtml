@@ -9,22 +9,58 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
+        <h3>Detalhes do Filme</h3>
         <dt>
-            @Html.DisplayNameFor(model => model.AtorId)
+            @Html.DisplayNameFor(model => model.filme.Titulo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AtorId)
+            @Html.DisplayFor(model => model.filme.Titulo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FilmeId)
+            @Html.DisplayNameFor(model => model.filme.Descricao)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FilmeId)
+            @Html.DisplayFor(model => model.filme.Descricao)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.filme.Categoria)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.filme.Categoria)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.filme.AnoLancamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.filme.AnoLancamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.filme.ClassificacaoIndicativa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.filme.ClassificacaoIndicativa)
+        </dd>
+        <h3>Detalhes do Ator</h3>
+        <dt>
+            @Html.DisplayNameFor(model => model.ator.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ator.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ator.Sobrenome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ator.Sobrenome)
+        </dd>
     </dl>
 </div>
 <p>

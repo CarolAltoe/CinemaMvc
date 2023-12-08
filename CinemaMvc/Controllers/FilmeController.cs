@@ -16,12 +16,31 @@ namespace CinemaMvc.Controllers
         // GET: Filme
         public ActionResult Index()
         {
-            return View(context.Filmes.OrderBy(c => c.Titulo));
+            var filmes = context.Filmes
+           .OrderBy(c => c.Id)
+           .ToList();
+
+            foreach (var filme in filmes)
+            {
+                filme.idioma = context.Idiomas.Find(filme.IdiomaId);
+       
+            }
+
+            return View(filmes);
         }
 
         public ActionResult Create()
         {
-            return View();
+            var filmeViewModel = new Filme();
+
+            ViewBag.Idiomas = new SelectList(context.Idiomas, "Id", "Descricao");
+
+            return View(filmeViewModel);
+        }
+
+        private SelectList GetDropdownList(string valueField, IEnumerable<object> source)
+        {
+            return new SelectList(source, valueField);
         }
 
         [HttpPost]
@@ -67,6 +86,7 @@ namespace CinemaMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Filme filme = context.Filmes.Find(id);
+            filme.idioma = context.Idiomas.Find(filme.IdiomaId);
             if (filme == null)
             {
                 return HttpNotFound();
