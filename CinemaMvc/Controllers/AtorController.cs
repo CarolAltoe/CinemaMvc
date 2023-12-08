@@ -14,9 +14,23 @@ namespace CinemaMvc.Controllers
         private EFContext context = new EFContext();
 
         // GET: Ator
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(context.Atores.OrderBy(c => c.Nome));
+            var atores = context.Atores
+                .OrderBy(c => c.Nome)
+                .AsQueryable();
+
+            foreach (var ator in atores)
+            {
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    atores = atores.Where(a =>
+                    a.Nome.Contains(searchTerm) || a.Sobrenome.Contains(searchTerm)
+                );
+                }
+            }
+
+            return View(atores);
         }
 
         public ActionResult Create()

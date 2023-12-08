@@ -14,16 +14,20 @@ namespace CinemaMvc.Controllers
         private EFContext context = new EFContext();
 
         // GET: Filme
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
             var filmes = context.Filmes
-           .OrderBy(c => c.Id)
-           .ToList();
+                .OrderBy(c => c.Titulo)
+                .AsQueryable();
 
             foreach (var filme in filmes)
             {
-                filme.idioma = context.Idiomas.Find(filme.IdiomaId);
-       
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    filmes = filmes.Where(a =>
+                    a.Titulo.Contains(searchTerm)
+                );
+                }
             }
 
             return View(filmes);

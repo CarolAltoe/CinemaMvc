@@ -16,9 +16,23 @@ namespace CinemaMvc.Controllers
         private EFContext context = new EFContext();
         // GET: Idioma
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            return View(context.Idiomas.OrderBy(c => c.Descricao));
+            var idiomas = context.Idiomas
+                .OrderBy(c => c.Descricao)
+                .AsQueryable();
+
+            foreach (var idioma in idiomas)
+            {
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    idiomas = idiomas.Where(a =>
+                    a.Descricao.Contains(searchTerm)
+                );
+                }
+            }
+
+            return View(idiomas);
         }
 
 

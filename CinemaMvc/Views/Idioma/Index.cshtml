@@ -9,6 +9,14 @@
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
+<form method="get" action="@Url.Action("Index")">
+    <label for="searchTerm" class="mr-2">Pesquisar:</label>
+    <input type="text" class="form-control mr-2" placeholder="Digite o nome do idioma" name="searchTerm" />
+    <br />
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+    <br />
+    <br />
+</form>
 <table class="table">
     <tr>
         <th>
