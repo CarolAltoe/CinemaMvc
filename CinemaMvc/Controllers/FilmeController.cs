@@ -19,9 +19,10 @@ namespace CinemaMvc.Controllers
             var filmes = context.Filmes
                 .OrderBy(c => c.Titulo)
                 .AsQueryable();
-
+            
             foreach (var filme in filmes)
             {
+                filme.idioma = context.Idiomas.Find(filme.IdiomaId);
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     filmes = filmes.Where(a =>
@@ -63,6 +64,7 @@ namespace CinemaMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Filme filme = context.Filmes.Find(id);
+            ViewBag.Idiomas = new SelectList(context.Idiomas, "Id", "Descricao");
             if (filme == null)
             {
                 return HttpNotFound();
@@ -105,6 +107,7 @@ namespace CinemaMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Filme filme = context.Filmes.Find(id);
+            filme.idioma = context.Idiomas.Find(filme.IdiomaId);
             if (filme == null)
             {
                 return HttpNotFound();
