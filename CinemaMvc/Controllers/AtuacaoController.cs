@@ -27,7 +27,7 @@ namespace CinemaMvc.Controllers
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     atuacoes = atuacoes.Where(a =>
-                    atuacao.ator.Nome.Contains(searchTerm) || a.filme.Titulo.Contains(searchTerm)
+                    a.ator.Nome.Contains(searchTerm) || a.filme.Titulo.Contains(searchTerm)
                 );
                 }
             }
